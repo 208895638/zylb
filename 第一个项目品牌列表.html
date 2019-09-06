@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bot{
+            padding-top: 30px;
+        }
+        table
+        {
+            border-collapse:collapse;
+            margin: 0 auto;
+        }
+        td,th{
+            padding: 10px ;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>可增删改查的品牌列表</h3>
+      <div class="top">
+        <div class="left">
+            <label>id <input  type="text" v-model.trim="id"></label>
+            <label>Name <input type="text" v-model.trim="name"></label>
+            <button @click="add">添加</button>
+        </div>
+        <div class="right">
+            <div>
+                <input type="text" v-model="search" placeholder="请输入需要搜索的内容">
+            </div>
+        </div>
+      </div>
+      <div class="bot">
+        <table border="1" >
+            <tr>
+                <th>ID(id)</th>
+                <th>NAME(名称)</th>
+                <th>CTIME(创建时间)</th>
+                <th>OPERATION(更多操作)</th>
+            </tr>
+            <tr v-for="item in lists" :key="item.id">
+               <td>{{ item.id }}</td>
+               <td>
+                   <div v-if="!item.isShow" @click="showInput($event,item.id)">{{ item.name }}</div>
+                   
+                    <input @blur="item.isShow = !item.isShow" v-else type="text" v-model="item.name">
+               </td>
+               <td>{{ item.time }}</td>
+               <td><button @click = "del(item.id)">删除</button></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data(){
+                return {
+                    id : "",
+                    name : "",
+                    search:"",
+                   list:[
+                       {
+                          id:1,
+                          name:"张三" ,
+                          time:"2019",
+                          isShow:false
+                       },
+                       {
+                          id:2,
+                          name:"李四" ,
+                          time:"2020",
+                          isShow:false
+                       },
+                       {
+                          id:3,
+                          name:"王五" ,
+                          time:"2020",
+                          isShow:false
+                       },
+                       {
+                          id:4,
+                          name:"赵六" ,
+                          time:"2020",
+                          isShow:false
+                       },
+                   ]
+                }
+            },
+            computed: {
+                lists(){
+                    var list1 = this.list.filter(ele => ele.name.includes(this.search) )
+                    return list1;
+                }
+            },
+            methods: {
+                showInput(e,val){
+                    var ele = e.target.parentNode.childNodes;
+                    var ite = this.list.find(ele => ele.id == val);
+                    ite.isShow = !ite.isShow;
+                    setTimeout(()=>{
+                        ele[0].focus();
+                        console.log(ele[0])
+                    })
+                    
+                },
+                add(){
+                    if(this.list.some(ele=> ele.id == this.id)){
+                        alert("id不能相同!");
+                        return ;
+                    };
+                    if(this.id == ""){
+                        alert("id不能为空!");
+                        return ;
+                    };
+                    if(this.name == ""){
+                        alert("name不能为空!");
+                        return ;
+                    };
+                    var obj = {
+                        id: this.id,
+                        name: this.name,
+                        time : new Date().toLocaleString(),
+                        isShow:false
+                    };
+                    this.list.push(obj);
+                    this.id = "",
+                    this.name = "";
+                },
+                del(val){
+                    //console.log(val);
+                    var index = this.list.findIndex(ele=> ele.id == val);
+                    console.log(index);
+                    this.list.splice(index,1);
+                    //alert(val)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
