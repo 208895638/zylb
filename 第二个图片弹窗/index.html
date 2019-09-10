@@ -128,7 +128,7 @@
                                 <div v-if="!isInputShow">
                                     {{ title }}
                                 </div>
-                                <input @blur="updateTitle(title)" v-focus v-if="isInputShow" type="text" v-model="title">
+                                <input @blur="updateTitle(title)" id="ipt" v-if="isInputShow" type="text" v-model="title">
                             </div>
                             <div class="bot">
                                 <button @click="delete1(id)">
@@ -153,6 +153,11 @@
                         },
                         updates(){
                             this.isInputShow = !this.isInputShow;
+                            
+                            this.$nextTick(()=>{
+                                var ele = document.getElementById("ipt");
+                                ele.focus()
+                            })
                             console.log(this.isInputShow)
                         },
                         goBigImg(val){
