@@ -4,6 +4,8 @@
 
 ### 刚学指令作业
 
+[指令作业](https://208895638.github.io/zylb/zl/)
+
 ### 第一个练习作业  
 
 [可增删改查的表格](https://208895638.github.io/zylb/first/#/)
