@@ -38,7 +38,7 @@ Vue.component("headers",{
         if(localStorage.getItem("token")){
 
         }else{
-            if(window.location.pathname == "/login.html"){
+            if(window.location.pathname == "/zylb/lyb/login.html"){
 
             }else{
                 alert("暂未登陆,请登陆后重试!");
