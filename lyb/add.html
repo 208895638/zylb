@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./lib/vue.js"></script>
+    <script src="./components/header.js"></script>
+    <script src="./components/aside.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <headers ></headers>
+      <div class="main">
+        <asides current="adds"></asides>
+        <div class="content">
+            <p>新增留言板</p>
+            <div class="box clearfix" >
+                <div >
+                    <label for="title">标题</label>
+                    <input id="title" v-model="title" type="text">
+                </div>
+                <div>
+                    <label for="info">内容</label>
+                    <input id="info" v-model="info" type="text">
+                </div>
+                <button @click="add" v-if="info != '' && title != ''">
+                    提交
+                </button>
+                <button v-else>
+                    请填写完整表单
+                </button>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data () {
+            return {
+                isShow:false,
+                title:"",
+                info:""
+            }
+        },
+        methods: {
+            add(){
+                var list = localStorage.getItem("list");
+                if(list){
+                    list = JSON.parse(list);
+                    var obj = {
+                        title:this.title,
+                        info:this.info,
+                        id:Math.random(),
+                        time:new Date().toLocaleString(),
+                        auth:localStorage.getItem("token")
+                    }
+                    list.push(obj)
+                }else{
+                    list = [];
+                    var obj = {
+                        title:this.title,
+                        info:this.info,
+                        id:Math.random(),
+                        time:new Date().toLocaleString(),
+                        auth:localStorage.getItem("token")
+                    }
+                    list.push(obj)
+                }
+                localStorage.setItem("list",JSON.stringify(list));
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

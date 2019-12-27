@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./lib/vue.js"></script>
+    <script src="./components/header.js"></script>
+</head>
+<body>
+    <div id="app">
+        <headers></headers>
+        <div class="login">
+            <input type="text" v-model.trim="usercount" placeholder="输入用户名即可登陆">
+            <button @click="login">登陆</button>
+        </div>
+        
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data () {
+                return {
+                    usercount:""
+                }
+            },
+            methods: {
+                login(){
+                    if(this.usercount == ""){
+                        alert("用户名不能为空")
+                        return 
+                    }
+                    localStorage.setItem("token",this.usercount);
+                    alert("登陆成功,1秒后跳转到首页");
+                    setTimeout(()=>{
+                        window.location.href="./index.html";
+                    })  
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

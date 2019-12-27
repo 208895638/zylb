@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./lib/vue.js"></script>
+    <script src="./components/header.js"></script>
+    <script src="./components/aside.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <headers></headers>
+      <div class="main">
+        <asides current="info"></asides>
+        <div class="content">
+            <p class="title">详情页</p>
+            <div class="info" v-if="!isEdit">
+                <div class="top">
+                    <p><span>标题:<b>{{ obj.title }}</b></span>    <span>{{ obj.time }}</span></p>
+                    <p><span>发布者:<b>{{ obj.auth }}</b></span></p>
+                </div>
+                <div class="bot">
+                    {{ obj.info }}
+                    <button @click="isEdit = true" v-if="obj.auth == auth">修改</button>
+                </div>
+            </div>
+            <div class="info" v-else>
+                <div class="top">
+                    <p><span>标题:<b>   <input v-model="obj.title" type="text">      </b></span>    <span>{{ obj.time }}</span></p>
+                    <p><span>发布者:<b>{{ obj.auth }}</b></span></p>
+                </div>
+                <div class="bot">
+                    <textarea v-model="obj.info"></textarea>
+                    <button @click="save">保存</button>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data () {
+            return {
+               obj:{},
+               isEdit:false,
+               auth:"",
+               list:[],
+               id:""
+            }
+        },
+        methods: {
+            save(){
+                var item = this.list.find(ele => ele.id == this.id);
+                this.obj.time = new Date().toLocaleString();
+                item = this.obj;
+                localStorage.setItem("list" , JSON.stringify(this.list))
+                
+                this.isEdit = false;
+                alert("保存成功");
+            }
+        },
+        created () {
+            this.auth = localStorage.getItem("token");
+            var list = JSON.parse(localStorage.getItem("list"));
+            this.list = list;
+            var id = window.location.search.split("=")[1];
+            this.id = id;
+            var item = list.find(ele => ele.id == id);
+            this.obj = item
+        }
+      });
+    </script>
+  </body>
+</html>
