@@ -41,6 +41,7 @@ Vue.component("headers",{
             if(window.location.pathname == "/zylb/login.html"){
 
             }else{
+                alert("暂未登陆");
                 console.log("暂未登陆")
             setTimeout(()=>{
                 window.location.href = "./login.html";
