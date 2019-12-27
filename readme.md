@@ -10,8 +10,11 @@
 
 [可增删改查的表格](https://208895638.github.io/zylb/first/#/)
 
+### 组件练习作业 留言板
+[留言板](https://208895638.github.io/zylb/login.html)
+
 ### 第二个练习作业  
-[可增删改查的图片弹窗](https://208895638.github.io/zylb/second/#/)
+[可增删改查的图片弹窗(可以废弃了)](https://208895638.github.io/zylb/second/#/)
 
 ### 第三个练习作业  
 [todoMVC](http://todomvc.com/)
