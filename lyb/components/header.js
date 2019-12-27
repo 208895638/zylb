@@ -33,5 +33,21 @@ Vue.component("headers",{
          localStorage.removeItem("token");
          location.href = "./login.html"
      }
+    },
+    created () {
+        if(localStorage.getItem("token")){
+
+        }else{
+            if(window.location.pathname == "/login.html"){
+
+            }else{
+                alert("暂未登陆,请登陆后重试!");
+            setTimeout(()=>{
+                window.location.href = "./login.html";
+            })
+            }
+            
+            
+        }
     }
 })
