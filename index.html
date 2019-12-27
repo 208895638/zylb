@@ -1,1 +1,64 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/zylb/favicon.ico><title>test</title><link href=/zylb/js/about.69594b15.js rel=prefetch><link href=/zylb/css/app.854cb205.css rel=preload as=style><link href=/zylb/js/app.7125b0b9.js rel=preload as=script><link href=/zylb/js/chunk-vendors.23acb59b.js rel=preload as=script><link href=/zylb/css/app.854cb205.css rel=stylesheet></head><body><noscript><strong>We're sorry but test doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/zylb/js/chunk-vendors.23acb59b.js></script><script src=/zylb/js/app.7125b0b9.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./lib/vue.js"></script>
+    <script src="./components/header.js"></script>
+    <script src="./components/aside.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <headers></headers>
+      <div class="main">
+        <asides current="list"></asides>
+        <div class="content">
+            <p>列表页</p>
+            <div class="box clearfix" >
+                <div  v-show="list.length != 0" class="per" v-for="item in list" :key="item.id">
+                    <div class="top">
+                        <div>
+                            <span>{{ item.title }}</span>by <b>{{ item.auth }}</b>
+                        </div>
+                        <div>
+                            {{ item.time }}
+                        </div>
+                    </div>  
+                    <div class="bot">
+                        <a :href="`./info.html?id=${item.id}`">{{ item.info }}</a>
+                    </div>
+                </div >
+                <div v-show = "list.length == 0">
+                    暂无留言 <a  href="./add.html">点我去留言吧</a >
+                </div>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data () {
+            return {
+               list:[]
+            }
+        },
+        methods: {
+            
+        },
+        created () {
+            var list = localStorage.getItem("list");
+            if(list){
+                this.list = JSON.parse(list)
+            }else{
+
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

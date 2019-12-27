@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #555;
+}
+.login{
+    width: 300px;
+    height: 270px;
+    padding: 0 100px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #F7F7F7;
+}
+.login input{
+    margin-bottom: 20px;
+}
+.tops{
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    height: 70px;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    background: #F7F7F7;
+}
+.tops>div , .tops>a{
+    height: 70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+.tops>.on{
+    background: #E7E7E7;
+}
+.tops .logout{
+    position: absolute;
+    top: 70px;
+    height: 26px;
+    padding: 8px 15px;
+    right: 60px;
+    width: 160px;
+    border: 1px solid rgba(0,0,0,.15);
+}
+.asides>div{
+    border: 1px solid #ccc;
+    width: 155px;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+}   
+.asides{
+    margin:0 20px;
+    
+    
+}
+.aside li{
+    width: 155px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.aside .on{
+    background: #31B0D5;
+    color: #fff;
+}
+.aside .on a{
+    color: #fff;
+}
+.main{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.content{
+    flex: 1;
+}
+.content p{
+    padding: 8px 15px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+.content .box{
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 15px;
+}
+.content .box>div{
+    display: flex;
+    flex-direction: column;
+}
+.content .box>div label{
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.content .box button{
+    margin-top: 20px;
+    float:right;
+}
+.content .info{
+    background-color: #f7f7f7;
+    overflow: hidden;
+}
+.content .info .top p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.content .info .bot{
+    background: #fff;
+    margin: 8px 15px;
+    min-height: 100px;
+    position: relative;
+}
+.content .info .bot button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.content .box .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.content .box .top span , .content .box .top b {
+    color: #337ab7;
+    padding-right:10px;
+}
+.content .box .bot{
+    line-height: 30px;
+}
+.content .box .per{
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+textarea{
+    border: none;
+    -webkit-appearance: none;
+    margin: 0px;
+    height: 134px;
+    width: 100%;
+    outline: none;
+}
